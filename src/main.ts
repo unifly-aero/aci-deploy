@@ -58,7 +58,7 @@ async function main() {
             "name": taskParams.containerName
         }
         if (taskParams.networkProfile) {
-            containerGroupInstance.networkProfile = {
+            let contGroupNetProf: ContainerInstanceManagementModels.ContainerGroupNetworkProfile = { 
                 "id": taskParams.networkProfile
             }
         }

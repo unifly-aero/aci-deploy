@@ -68,7 +68,7 @@ export class TaskParameters {
         }
         this._image = core.getInput('image', { required: true });
         let ipAddress = core.getInput('ip-address');
-        if(ipAddress != "Public" && "Private") {
+        if(ipAddress != "Public" || ipAddress != "Private") {
             throw Error('The Value of IP Address must be either Public or Private');
         } else {
             this._ipAddress = (ipAddress == 'Public') ? 'Public' : 'Private';
@@ -102,7 +102,7 @@ export class TaskParameters {
         this._registryUsername = core.getInput('registry-username');
         this._registryPassword = core.getInput('registry-password');
         let restartPolicy = core.getInput('restart-policy');
-        if(restartPolicy != "Always" && "OnFailure" && "Never") {
+        if(!["Always", "OnFailure", "Never"].indexOf(restartPolicy, 0)) {
             throw Error('The Value of Restart Policy can be "Always", "OnFailure" or "Never" only!');
         } else {
             this._restartPolicy = ( restartPolicy == 'Always' ) ? 'Always' : ( restartPolicy == 'Never' ? 'Never' : 'OnFailure');

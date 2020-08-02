@@ -68,7 +68,7 @@ export class TaskParameters {
         }
         this._image = core.getInput('image', { required: true });
         let ipAddress = core.getInput('ip-address');
-        if(ipAddress != "Public" || ipAddress != "Private") {
+        if(!["Public", "Private"].includes(ipAddress)) {
             throw Error('The Value of IP Address must be either Public or Private');
         } else {
             this._ipAddress = (ipAddress == 'Public') ? 'Public' : 'Private';

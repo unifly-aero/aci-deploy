@@ -8,6 +8,7 @@ import { ContainerInstanceManagementClient, ContainerInstanceManagementModels, C
 import { TokenCredentials, ServiceClientCredentials } from "@azure/ms-rest-js";
 
 import { TaskParameters } from "./taskparameters";
+import { ContainerGroupNetworkProfile } from '@azure/arm-containerinstance/esm/models/mappers';
 
 
 var prefix = !!process.env.AZURE_HTTP_USER_AGENT ? `${process.env.AZURE_HTTP_USER_AGENT}` : "";
@@ -55,6 +56,11 @@ async function main() {
             "restartPolicy": taskParams.restartPolicy,
             "type": "Microsoft.ContainerInstance/containerGroups",
             "name": taskParams.containerName
+        }
+        if (taskParams.networkProfile) {
+            containerGroupInstance.networkProfile = {
+                "id": taskParams.networkProfile
+            }
         }
         let containerDeploymentResult = await client.containerGroups.createOrUpdate(taskParams.resourceGroup, taskParams.containerName, containerGroupInstance);
         if(containerDeploymentResult.provisioningState == "Succeeded") {

@@ -21,6 +21,7 @@ export class TaskParameters {
     private _location:string;
     private _memory: number;
     private _containerName: string;
+    private _networkProfile: string;
     private _osType: ContainerInstanceManagementModels.OperatingSystemTypes;
     private _ports: Array<ContainerInstanceManagementModels.Port>;
     private _protocol: ContainerInstanceManagementModels.ContainerGroupNetworkProtocol;
@@ -46,6 +47,7 @@ export class TaskParameters {
         }
         this._cpu = parseFloat(core.getInput('cpu'));
         this._dnsNameLabel = core.getInput('dns-name-label', { required: false });
+        this._networkProfile = core.getInput('network-profile-id')
         this._diagnostics = {}
         let logType = core.getInput('log-type');
         let logAnalyticsWorkspace = core.getInput('log-analytics-workspace');
@@ -269,6 +271,10 @@ export class TaskParameters {
 
     public get containerName() {
         return this._containerName;
+    }
+    
+    public get networkProfile() {
+        return this._networkProfile;
     }
 
     public get osType() {

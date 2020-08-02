@@ -10,6 +10,7 @@ export class TaskParameters {
     private _endpoint: IAuthorizer;
     private _resourceGroup: string;
     private _commandLine: Array<string>;
+    private _containerGroupName: string;
     private _cpu: number;
     private _diagnostics: ContainerInstanceManagementModels.ContainerGroupDiagnostics;
     private _dnsNameLabel: string;
@@ -45,6 +46,7 @@ export class TaskParameters {
                 this._commandLine.push(command);
             });
         }
+        this._containerGroupName = core.getInput('container-group-name', { required: true})
         this._cpu = parseFloat(core.getInput('cpu'));
         this._dnsNameLabel = core.getInput('dns-name-label', { required: false });
         this._networkProfile = core.getInput('network-profile-id')
@@ -227,6 +229,10 @@ export class TaskParameters {
 
     public get commandLine() {
         return this._commandLine;
+    }
+
+    public get containerGroupName() {
+        return this._containerGroupName;
     }
 
     public get cpu() {

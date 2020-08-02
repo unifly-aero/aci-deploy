@@ -28,6 +28,9 @@ inputs:
         description: 'The command line to run when the container is started, e.g. "/bin/bash -c myscript.sh"'
         required: false
         default: ''
+    container-group-instance-name: 'The name of the container instance group to be created'
+        required: true
+        default: 'uknown-container-group'
     cpu:
         description: 'Number of CPU Cores Required'
         required: false

@@ -55,7 +55,7 @@ async function main() {
             "osType": taskParams.osType,
             "restartPolicy": taskParams.restartPolicy,
             "type": "Microsoft.ContainerInstance/containerGroups",
-            "name": taskParams.containerName
+            "name": taskParams.containerGroupName
         }
         if (taskParams.networkProfile) {
             let contGroupNetProf: ContainerInstanceManagementModels.ContainerGroupNetworkProfile = { 

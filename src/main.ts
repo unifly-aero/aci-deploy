@@ -62,7 +62,7 @@ async function main() {
                 "id": taskParams.networkProfile
             }
         }
-        let containerDeploymentResult = await client.containerGroups.createOrUpdate(taskParams.resourceGroup, taskParams.containerName, containerGroupInstance);
+        let containerDeploymentResult = await client.containerGroups.createOrUpdate(taskParams.resourceGroup, taskParams.containerGroupName, containerGroupInstance);
         if(containerDeploymentResult.provisioningState == "Succeeded") {
             console.log("Deployment Succeeded.");
             let appUrlWithoutPort = containerDeploymentResult.ipAddress?.fqdn;

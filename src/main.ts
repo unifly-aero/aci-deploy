@@ -55,6 +55,9 @@ async function main() {
             "osType": taskParams.osType,
             "restartPolicy": taskParams.restartPolicy,
             "type": "Microsoft.ContainerInstance/containerGroups",
+            "identity": {
+                "type": "SystemAssigned"
+            },
             "name": taskParams.containerGroupName
         }
         if (taskParams.networkProfile) {
